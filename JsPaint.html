@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#canvas {
+			border: 2px solid black;
+		}
+	</style>
+
+</head>
+<body>
+	<canvas id="canvas" width="400" height="400"></canvas>
+
+	<input type="color" id="col">
+
+
+
+	<script>
+		var canvas = document.getElementById('canvas');
+		var context = canvas.getContext('2d');
+
+		var take = 'blue';
+		document.getElementById('col').oninput = function (){
+			take = this.value;
+		}
+		
+		canvas.onmousedown = function (event) {
+			canvas.onmousemove = function (event) {
+			var x = event.offsetX;
+			var y = event.offsetY;
+			context.fillStyle = take;
+			context.fillRect(x-3,y-3,5,5);
+
+			}
+			canvas.onmouseup = function (event) {
+				canvas.onmousemove = null;
+			}
+		}
+		
+
+	</script>
+</body>
+</html>
