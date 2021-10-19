@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#canvas {
+			border: 3px solid black;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="canvas" width="300" height="400"></canvas>
+
+	<script>
+		var canvas = document.getElementById('canvas');
+		var context = canvas.getContext('2d');
+
+		var ballRadius = 10;
+
+		var ballX = canvas.width/2;
+		var ballY = canvas.height - ballRadius;
+
+		var bx = 1;
+		var by = -1;
+
+		function drawBall() {
+			context.beginPath();
+			context.fillStyle = "red";
+			context.arc(ballX,ballY,ballRadius,0,Math.PI*2);
+			context.stroke();
+			context.fill();
+			context.closePath();
+		}
+		
+		function draw() {
+			context.clearRect(0,0,canvas.width,canvas.height);
+			drawBall();
+
+			if (ballX + bx > canvas.width - ballRadius || ballX + bx < ballRadius) {
+				bx = -bx;
+			}
+			if(ballY + by > canvas.height - ballRadius || ballY + by < ballRadius){
+				by = -by;
+			}
+
+			ballX += bx;
+			ballY += by;
+		}
+
+		setInterval(draw,5);
+
+	</script>
+
+</body>
+</html>
