@@ -1,2 +1,1 @@
-# JsAnimation 
-the file executes ball animation 
+# Ball Animation using JS Canvas
